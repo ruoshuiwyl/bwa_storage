@@ -17,7 +17,8 @@ namespace gamtools{
         void Start(int num_thread);
         void SubmitJob(std::function<void ()> && f);
         void ShutDown();
-        void QueueSize();
+        int QueueSize() const;
+        int GetBackgroundThreads() ;
         struct Impl;
     private:
         std::unique_ptr<Impl> impl_;
