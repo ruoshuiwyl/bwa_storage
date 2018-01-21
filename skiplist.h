@@ -16,13 +16,18 @@ namespace  gamtools {
 
     public:
         explicit SkipList(Comparator cmp, Arena* arena);
+        void Insert(const Key &key);
+        bool Contain(const Key &key)const ;
+        class Iterator {
+
+        };
 
 
     private:
         Comparator const compare_;
         Arena *const arena_;
         Node *const head_;
-        std::atomic<void *> max_height_;
+        std::atomic<int> max_height_;
         std::uniform_int_distribution<int> rnd_;
     };
 
@@ -31,6 +36,10 @@ namespace  gamtools {
     SkipList::SkipList(Comparator cmp, Arena *arena) : {
 
     }
+    template <typename  Key, typename  Comparator>
+    struct SkipList<Key, Comparator>::Node {
+
+};
 
 }
 
