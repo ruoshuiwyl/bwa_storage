@@ -2,6 +2,7 @@
 // Created by ruoshui on 1/21/18.
 //
 
+#include <cstdint>
 #include "arena.h"
 
 namespace  gamtools {
@@ -29,7 +30,7 @@ namespace  gamtools {
         } else {
             result = AllocateFallback(needed);
         }
-        assert(reinterpret_cast<intptr_t>(result)&(align - 1) == 0);
+        assert((reinterpret_cast<intptr_t>(result)&(align - 1)) == 0);
         return result;
     }
 

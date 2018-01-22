@@ -5,12 +5,16 @@
 #ifndef BASE_AREAN_H
 #define BASE_AREAN_H
 
+#include <cstdio>
+#include <vector>
+#include <cassert>
+
 namespace gamtools {
     class Arena {
     public:
         Arena();
         Arena(const Arena &) = delete;
-        void operator=(const Arena& ) = delete;
+        Arena& operator=(const Arena& ) = delete;
         ~Arena();
 
         char *Allocate(size_t bytes);
@@ -37,7 +41,7 @@ namespace gamtools {
             char *result = alloc_ptr_;
             alloc_ptr_ += bytes;
             alloc_bytes_remaining_ -= bytes;
-            return alloc_ptr_;
+            return result;
         }
         return AllocateFallback(bytes);
     }

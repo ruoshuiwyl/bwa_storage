@@ -24,7 +24,6 @@ namespace gamtools {
         int GetBackgroundThreads() ;
     private:
         void BGThread();
-        //        static void* BGThreadWrapper(void* arg);
         std::atomic<bool> exit_all_threads_;
         std::atomic<bool> wait_for_jobs_to_complete_;
         int total_threads_limit_;
@@ -89,7 +88,6 @@ namespace gamtools {
             return ;
         }
         while((int)bgthreads_.size() < total_threads_limit_) {
-//            std::thread p_t(&BGThread);
             bgthreads_.push_back(std::thread(&Impl::BGThread, std::move(this)));
         }
     }
