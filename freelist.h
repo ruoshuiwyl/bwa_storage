@@ -84,6 +84,18 @@ namespace gamtools {
     };
 
     template <bool threads, int ints>
+    void* SmallAlloc<threads, ints>::reallocate(void *p, size_t old_sz, size_t new_sz) {
+        char *result = (char*)allocate(new_sz);
+        char *old_ptr = (char*) p;
+        for (size_t i = 0; i < new_sz; ++i){
+            result[i] = old_ptr[i];
+        }
+        deallocate(p, old_sz);
+        return result;
+    }
+
+
+    template <bool threads, int ints>
     void *SmallAlloc<threads, ints>::refill(size_t n) {
         int nobjs = 20;
         char *chunk = chunk_alloc(n, nobjs);
